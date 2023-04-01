@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+    </head>
+    <body>
+    <div class="center">
+        <h2>Delete Item {{item.productName}} ?</h2>
+        <form method="post">
+            <input class="button-delete-confirm" type="submit" value="Confirm">
+            <a href="/" class="button">
+                    Cancel
+            </a>
+            {%csrf_token%}
+        </form>
+    </div>
+    </body>
+</html>

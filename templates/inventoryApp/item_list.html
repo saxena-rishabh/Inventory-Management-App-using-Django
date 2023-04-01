@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+        <title>Item List</title>
+    </head>
+    <body>
+        <h1 align="center">Items:</h1>
+        <table>
+            <thead>
+                <th>Product Name</th>
+                <th>Brand Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Supplier</th>
+                <th>Supplier Contact Number</th>
+                <th>Acquired Date</th>
+                <th>Expiry Date</th>
+                <th>Days Remaining in Expiry</th>
+            </thead>
+            {% for item in item_list %}
+            <tr>
+                <td>{{item.productName}}</td>
+                <td>{{item.brandName}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.supplier}}</td>
+                <td>{{item.supplier_contact_number}}</td>
+                <td>{{item.acquired_date}}</td>
+                <td>{{item.expiry_date}}</td>
+                {% if item.days_remaining < 100 %}
+                <td style="color: red;">{{item.days_remaining}}</td>
+                {% else %}
+                <td style="color: green;">{{item.days_remaining}}</td>
+                {% endif %}
+                <td><a href="/update/{{item.id}}">Update</a></td>
+                <td><a href="/delete/{{item.id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p align="center">
+            <a href="create/">
+                <button class="button">
+                    Add Item
+                </button>
+            </a>
+         </p>
+    </body>
+</html>
